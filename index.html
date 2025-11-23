@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah - Pendaftaran Santri Baru</title>
+  <link rel="icon" type="image/png" href="gambar/logo-pondok.png" />
+  <style>
+    :root {
+      --primary: #1b5e20;
+      --primary-dark: #0d3b12;
+      --accent: #f4b41a;
+      --bg: #f3faf5;
+      --text: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      column-gap: 1.5rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .nav-logo-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 2px solid var(--primary);
+    }
+
+    .nav-logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-logo-text {
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #555;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: rgba(27, 94, 32, 0.08);
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-dark);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(244, 180, 26, 0.1);
+      color: var(--primary);
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 3vw, 2.7rem);
+      margin: 0 0 0.75rem;
+      color: var(--primary);
+    }
+
+    .hero p {
+      margin: 0 0 1.25rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 0.75rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #43a047);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(0.95);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      color: #444;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .hero-stat-number {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .hero-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: #222;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .hero-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .hero-card-footer {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+    }
+
+    .hero-pill {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(27, 94, 32, 0.07);
+      color: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 2.5rem 1.25rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      margin-top: 0;
+      margin-bottom: 2rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    @media (max-width: 800px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-soft {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    }
+
+    .pill-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(30, 60, 114, 0.06);
+      color: var(--primary);
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    ul.clean {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    ul.clean li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    ul.clean li span.bullet {
+      margin-top: 0.25rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    /* PROGRAMS */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .program-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.3rem 1.4rem;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.04);
+      border-top: 3px solid rgba(30, 60, 114, 0.12);
+    }
+
+    .program-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .program-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* FASILITAS */
+    .facility-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .facility-tag {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* GALERI */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ddd;
+      height: 220px;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item::after {
+      content: "Foto Kegiatan";
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+
+    /* KONTAK */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 1.6rem;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-info p {
+      margin-top: 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .map-frame {
+      width: 100%;
+      min-height: 260px;
+      border: 0;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    /* PENDAFTARAN */
+    .form-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 1.6rem 1.7rem;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 12px;
+      margin-bottom: 0.85rem;
+      border: 1px solid #d5d7de;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: 0.15s;
+      background: #fdfdff;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(30, 60, 114, 0.12);
+      background: #fff;
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(135deg, var(--primary), #43a047);
+      color: white;
+      padding: 0.85rem 1.2rem;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      font-weight: 600;
+    }
+
+    button[type="submit"]:hover {
+      filter: brightness(0.95);
+    }
+
+    .status-box {
+      border-radius: 10px;
+      padding: 0.8rem 0.9rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.9rem;
+      display: none;
+      font-weight: 600;
+      display: none;
+    }
+
+    .status-box strong {
+      margin-right: 0.25rem;
+    }
+
+    .success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #b7e1c2;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f1b0b7;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 1.2rem 1.25rem 1.6rem;
+      font-size: 0.85rem;
+      color: #777;
+      text-align: center;
+      background: #fff;
+      margin-top: 1.5rem;
+    }
+
+    /* MOBILE TWEAKS */
+    @media (max-width: 600px) {
+      .nav {
+        padding: 0.6rem 0.9rem;
+      }
+
+      .hero {
+        padding: 2.2rem 1rem 1.5rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .form-card {
+        padding: 1.2rem 1.3rem;
+      }
+
+      .gallery-item {
+        height: 190px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+      <div class="nav">
+        <div class="nav-logo">
+        <div class="nav-logo-circle">
+          <img src="gambar/logo-pondok.png" alt="Logo Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah" />
+        </div>
+        <div class="nav-logo-text">
+          Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah<br /><span style="font-weight: 500; font-size: 0.8rem; color: #777;">Berdiri sejak 2022</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#beranda">Beranda</a>
+        <a href="#profil">Profil</a>
+        <a href="#program">Program</a>
+        <a href="#fasilitas">Fasilitas</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+      <button class="nav-cta" onclick="document.getElementById('pendaftaran').scrollIntoView({behavior: 'smooth'});">
+        Daftar Santri Baru
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO / BERANDA -->
+  <main id="beranda" class="hero">
+    <div>
+      <div class="hero-badge"><span></span> Penerimaan Santri Baru Tahun Ajaran 2026/2027</div>
+      <h1>Pondok Pesantren Salaf Berbasis Al-Qur'an dan Kajian Kitab Kuning</h1>
+      <p>
+        Menyiapkan generasi Qur'ani yang berilmu, berakhlak, dan siap mengabdi
+        kepada umat. Kurikulum terpadu antara pendidikan salaf dan modern,
+        dengan suasana belajar yang nyaman dan penuh keberkahan.
+      </p>
+      <div class="hero-actions">
+        <a href="#pendaftaran" class="btn-primary">Daftar Santri Baru</a>
+        <a href="#profil" class="btn-ghost">Lihat Profil Pondok</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-number">2022</div>
+          <div>Tahun Berdiri</div>
+        </div>
+        <div>
+          <div class="hero-stat-number">+80</div>
+          <div>Santri Aktif</div>
+        </div>
+        <div>
+          <div class="hero-stat-number">24 Jam</div>
+          <div>Lingkungan Pesantren</div>
+        </div>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="hero-card-tag">Tahun Ajaran 2026/2027</div>
+      <h3>Informasi Pendaftaran</h3>
+      <p>
+        Pendaftaran santri baru telah dibuka untuk jenjang SDI/MI, MTs/MA (atau setara).
+        Kuota terbatas untuk menjaga kualitas pembinaan dan pengasuhan santri.
+      </p>
+      <div class="hero-pill-row">
+        <span class="hero-pill">Asrama Putra & Putri</span>
+        <span class="hero-pill">Tahfidz Al-Qur'an</span>
+        <span class="hero-pill">Kitab Kuning</span>
+      </div>
+      <div class="hero-card-footer">
+        <span>Gelombang 1: April – Juli 2026</span>
+        <span>Gelombang 2: Agustus – November 2026</span>
+        <a href="#pendaftaran" style="font-size: 0.8rem; color: var(--primary); text-decoration: none;">Lihat Syarat &gt;</a>
+      </div>
+    </aside>
+  </main>
+
+  <!-- PROFIL PONDOK -->
+  <section id="profil">
+    <div class="section-inner">
+      <h2 class="section-title">Profil Pondok Pesantren</h2>
+      <p class="section-subtitle">
+        Pondok Pesantren ini berdiri pada tahun 2022 dengan tujuan menjadi
+        tempat pendidikan yang memadukan kekuatan ilmu agama, akhlak, dan
+        kecakapan hidup di era modern.
+      </p>
+
+      <div class="grid-2">
+        <div class="card-soft">
+          <div class="pill-label">Sejarah Singkat</div>
+            <p style="font-size: 0.95rem; line-height: 1.7;">
+              Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah didirikan sebagai respon atas kebutuhan masyarakat
+              akan lembaga pendidikan Islam yang fokus pada pembinaan karakter, Al-Qur&#39;an dan Kajian Kitab Kuning.
+            <br /><br />
+            Berawal dari beberapa santri di lingkungan sekitar, kini pondok
+            terus berkembang dengan fasilitas yang lebih lengkap dan program
+            pendidikan yang terstruktur.
+            <br /><br />
+            Pendiri sekaligus pengasuh Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah yakni <b>Kyai Mahrus Ali, S.H.,M.Pd.</b> putra dari Almarhum <b>Kyai Sya'roni</b>, asal Tengginah, Sumur Pandan, Kampao Kec.Blega Kab.Bangkalan
+          </p>
+        </div>
+        <div class="card-soft">
+          <div class="pill-label">Visi &amp; Misi</div>
+          <ul class="clean">
+            <li>
+              <span class="bullet"></span>
+              <span><strong>Visi:</strong> Mencetak generasi muslim, berakhlak mulia, dan bermanfaat bagi umat.</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span><strong>Misi:</strong> Menyelenggarakan pendidikan pesantren yang berlandaskan manhaj Ahlus Sunnah wal Jama'ah An-Nahdliyah.</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Mengintegrasikan ilmu agama dan pengetahuan umum secara seimbang.</span>
+            </li>
+            <li>
+              <span class="bullet"></span>
+              <span>Menciptakan lingkungan yang kondusif bagi pembinaan akhlak dan kedisiplinan.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM PENDIDIKAN -->
+  <section id="program">
+    <div class="section-inner">
+      <h2 class="section-title">Program Pendidikan</h2>
+      <p class="section-subtitle">
+        Program pendidikan dirancang untuk membentuk santri yang kuat dalam
+        aqidah, ibadah, dan akhlak, sekaligus siap menghadapi tantangan masa
+        depan.
+      </p>
+
+      <div class="programs-grid">
+        <article class="program-card">
+          <h3>Program Tartil Al-Qur'an</h3>
+          <p>
+            Target dapat membaca Al-Qur'an dengan baik secara makhorijul huruf, tajwid dan irama.
+          </p>
+        </article>
+        <article class="program-card">
+          <h3>Kajian Kitab Kuning</h3>
+          <p>
+            Pengajian kitab-kitab dasar dan menengah, seperti Fathul Qarib,
+            Ta'lim Muta'allim, Riyadhus Shalihin, dan lainnya.
+          </p>
+        </article>
+        <article class="program-card">
+          <h3>Pendidikan Formal</h3>
+          <p>
+            Terintegrasi dengan sekolah formal (SDI dan SMPI Lukman Hakim dan SMA) yang
+            bekerja sama dengan pondok.
+          </p>
+        </article>
+        <article class="program-card">
+          <h3>Ekstrakurikuler</h3>
+          <p>
+            Kegiatan tambahan seperti pramuka, olahraga, seni baca Al-Qur'an,
+            Pencak Silat (Pagar Nusa dan Karate), Kesenian Shalawat Hadrah SHAH ALBARADA, serta pelatihan keterampilan.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASILITAS -->
+  <section id="fasilitas">
+    <div class="section-inner">
+      <h2 class="section-title">Fasilitas Pondok</h2>
+      <p class="section-subtitle">
+        Meski baru berdiri pada tahun 2022, pondok terus berupaya
+        mengembangkan fasilitas untuk menunjang kenyamanan dan kualitas
+        belajar santri.
+      </p>
+
+      <div class="card-soft">
+        <p style="margin-top: 0; font-size: 0.95rem;">
+          Beberapa fasilitas yang saat ini tersedia di lingkungan pondok:
+        </p>
+        <div class="facility-tags">
+          <span class="facility-tag">Asrama Putra &amp; Putri Terpisah</span>
+          <span class="facility-tag">Musholla</span>
+          <span class="facility-tag">Ruang Kelas</span>
+          <span class="facility-tag">Aula Pesantren</span>
+          <span class="facility-tag">Gubug Ta'lim</span>
+          <span class="facility-tag">Lapangan Olahraga</span>
+          <span class="facility-tag">Kantin Santri</span>
+          <span class="facility-tag">Pendidikan Madrasah Diniyah Takmiliyah Ula/Wustha/Ulya.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERI -->
+  <section id="galeri">
+    <div class="section-inner">
+      <h2 class="section-title">Galeri Kegiatan</h2>
+      <p class="section-subtitle">
+        Dokumentasi beberapa kegiatan yang ada di Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah.
+      </p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan.jpg" alt="Kegiatan santri 1" />
+          </div>
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan2.jpg" alt="Kegiatan santri 2" />
+          </div>
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan3.jpg" alt="Kegiatan santri 3" />
+          </div>
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan4.jpg" alt="Kegiatan santri 4" />
+          </div>
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan5.jpg" alt="Kegiatan santri 5" />
+          </div>
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan6.jpg" alt="Kegiatan santri 6" />
+          </div>
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan7.jpg" alt="Kegiatan santri 7" />
+          </div>
+          <div class="gallery-item">
+            <img src="gambar/gambar-kegiatan8.jpg" alt="Kegiatan santri 8" />
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- KONTAK & LOKASI -->
+  <section id="kontak">
+    <div class="section-inner">
+      <h2 class="section-title">Kontak &amp; Lokasi</h2>
+      <p class="section-subtitle">
+        Silakan hubungi pengelola pondok untuk informasi lebih lanjut terkait
+        pendaftaran, biaya, dan lainnya.
+      </p>
+
+      <div class="contact-grid">
+          <div class="card-soft contact-info">
+          <p><strong>Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah</strong></p>
+          <ul class="contact-list">
+            <li><strong>Alamat:</strong> Jl. Adi Mulya, Dusun Segaran gang Mauni RT03 RW08, Desa Kendalpayak, Kec. Pakisaji, Kab. Malang</li>
+            <li><strong>WhatsApp:</strong> 0877-3175-8727</li>
+            <li><strong>Email:</strong> ponpesruasmalang</li>
+            <li><strong>Jam Layanan:</strong> 08.00 - 16.00 WIB</li>
+          </ul>
+          <p>
+            Anda dapat mengunjungi pondok secara langsung pada jam layanan,
+            atau menghubungi via WhatsApp untuk konfirmasi kedatangan.
+          </p>
+        </div>
+        <div>
+          <!-- Ganti src iframe ini dengan embed Google Maps lokasi pondok Anda -->
+          <iframe
+            class="map-frame"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d493.83053559792234!2d112.6268335472394!3d-8.035561171251587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62785b552b33d%3A0x1f58f918c3aeddec!2sMusholla%20Ta&#39;limul%20Huda!5e0!3m2!1sid!2sid!4v1763883528955!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENDAFTARAN SANTRI BARU -->
+  <section id="pendaftaran">
+    <div class="section-inner">
+      <h2 class="section-title">Pendaftaran Santri Baru</h2>
+      <p class="section-subtitle">
+        Silakan isi formulir berikut dengan data yang benar. Data akan langsung
+        tersimpan ke Google Spreadsheet pengelola pondok.
+      </p>
+
+      <div class="form-card">
+        <div id="statusSuccess" class="status-box success" role="alert" aria-live="polite">
+          <strong>Berhasil!</strong> Pendaftaran berhasil dikirim. Terima kasih.
+        </div>
+        <div id="statusError" class="status-box error" role="alert" aria-live="polite">
+          <strong>Gagal!</strong> Terjadi kesalahan. Silakan coba lagi atau hubungi pengurus.
+        </div>
+
+        <form id="pendaftaranForm">
+          <label for="nama">Nama Lengkap</label>
+          <input type="text" id="nama" name="nama" placeholder="Nama lengkap santri" required />
+
+          <label for="jk">Jenis Kelamin</label>
+          <select id="jk" name="jk" required>
+            <option value="">-- Pilih --</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+
+          <label for="ttl">Tempat / Tanggal Lahir</label>
+          <input type="text" id="ttl" name="ttl" placeholder="Contoh: Semarang, 12 Mei 2012" required />
+
+          <label for="alamat">Alamat Lengkap</label>
+          <textarea id="alamat" name="alamat" rows="3" placeholder="Alamat domisili santri" required></textarea>
+
+          <label for="wali">Nama Wali</label>
+          <input type="text" id="wali" name="wali" placeholder="Nama orang tua / wali" required />
+
+          <label for="hp">No. HP/WA Wali</label>
+          <input type="text" id="hp" name="hp" placeholder="Nomor yang aktif WhatsApp" required />
+
+          <button type="submit">Kirim Pendaftaran</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; <span id="year"></span> Pondok Pesantren Raudlatul &#39;Ulum Assya&#39;roniyyah. Semua hak cipta dilindungi. | Website ini dapat disesuaikan sesuai kebutuhan pondok Anda.
+  </footer>
+
+  <script>
+    // Tahun otomatis di footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // URL Web App Google Apps Script
+    // Ganti dengan URL Web App yang kamu dapat setelah deploy script
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxW_6oqgnft-bof9VlBXQUE7K3n0PAlpze3P-3cKMUG-dcgUAYv784kRipOYshzMVeY/exec";
+
+    const form = document.getElementById("pendaftaranForm");
+    const statusSuccess = document.getElementById("statusSuccess");
+    const statusError = document.getElementById("statusError");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusSuccess.style.display = "none";
+      statusError.style.display = "none";
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch(scriptURL, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (res.ok) {
+          statusSuccess.style.display = "block";
+          statusSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+          form.reset();
+        } else {
+          statusError.style.display = "block";
+          statusError.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      } catch (err) {
+        statusError.style.display = "block";
+        statusError.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  </script>
+</body>
+</html>
